@@ -1,0 +1,11 @@
+install usb extender
+cable management
+leveling tools
+leveling feet
+determine if extruder is skipping steps during retraction
+
+
+atx power control
+connect PS_ON to green
+M80 = on, M81 = off
+question: cut D1 and connect VCC to v5sb
