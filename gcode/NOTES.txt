@@ -46,3 +46,7 @@ This is a repeat of hollow_cubeI38_50-layer-height-test-p21 using even smaller l
 15-20 0.04
 20-24 0.02
 The infill has been changed to density 0.1.  Some consideration was made to reducing the infill layers, but since this is a test about layer height, it didn't make sense to significantly change the time between layers.
+EDGE CRACKS
+
+MinecraftCreeperI38_50-23
+Trying to diagnose the edge cracks but make a comparative creeper print at 0.1mm.  Using 6 top layers to prevent sagging on the top.  Also including a full-height skirt to address drafts.
