@@ -50,3 +50,11 @@ EDGE CRACKS
 
 MinecraftCreeperI38_50-23
 Trying to diagnose the edge cracks but make a comparative creeper print at 0.1mm.  Using 6 top layers to prevent sagging on the top.  Also including a full-height skirt to address drafts.
+HUGE MESS, not worth finishing
+
+short-cubeI38_50-24
+This is a quick attempt at a lower temperature (195), and smaller filament width (2.94)  0.1mm layers, 6 top layers, full-height skirt.  Reducing the brim to 4 and the skirt distance to 8 to bring everything in closer.  The skirt is very poor and may interfer with the print (z too high?) but i should learn something about acceptable temperatures.
+SUCCESS, the edges are very smooth.
+
+Heart_VaseI38_50-25
+Saved a new config at 195c after the last success (fixing the skirt height required a manual edit of the saved config.)  Printing the twisted heart vase at 100%, 0.1mm layer (1000 layers), 0 infill, 4 bottom layers, 0 top layers.  Estimated 8 hours printing time.
