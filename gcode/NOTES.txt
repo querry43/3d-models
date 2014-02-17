@@ -58,3 +58,19 @@ SUCCESS, the edges are very smooth.
 
 Heart_VaseI38_50-25
 Saved a new config at 195c after the last success (fixing the skirt height required a manual edit of the saved config.)  Printing the twisted heart vase at 100%, 0.1mm layer (1000 layers), 0 infill, 4 bottom layers, 0 top layers.  Estimated 8 hours printing time.
+POSSIBLE CONTROLLER OVERHEAT, leading to missteps
+
+bridge-testI38_50-26
+After some fantastic bridging inthe vase, trying the bridge test again.
+
+Nautilus_GearI38_50-27
+First print with slic3r 1.0.0RC2.  Nautilus gears at .2mm layer height, no other config changes from saved version.
+
+spring-footI38_50-28
+First print with green filament.  220c heater, .4 layer height.
+
+totoro-solidI38_50-29
+Green, 220c heater, .2 layer height.  4 perimiters, 0 infill.  Real good.  Hollow spot at top of head, possibly due to too much overhang.  gloopy ears.
+
+totoro-solidI38_50-30
+Same as totoro-solidI38_50-29 with slicer RC3.
