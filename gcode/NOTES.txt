@@ -74,3 +74,9 @@ Green, 220c heater, .2 layer height.  4 perimiters, 0 infill.  Real good.  Hollo
 
 totoro-solidI38_50-30
 Same as totoro-solidI38_50-29 with slicer RC3.
+
+fan_mountI38_50-32
+A successful print of the fan mounts.  Speed is lowered to 50% after the narrow pillars start printing.
+
+Heart_VaseI38_50-33
+This is the first print after replacing bearings and adding fans.  Best print so far.  Very smooth overhangs.  Some aliasing.  A few horizontal cracks.
