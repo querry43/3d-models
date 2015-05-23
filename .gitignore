@@ -1,7 +1,1 @@
-tmp/
-*.tmp
-*.bak
-*.lnk
-Printrun-Win-Slic3r-05Nov2013/
-RAMPS/
-Slic3r/
+*.gcode
