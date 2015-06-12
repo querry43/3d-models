@@ -6,7 +6,7 @@ appearance: {}
 cura:
   config: /home/matt/work/models/slic3r.ini
   enabled: true
-  path: /home/matt/.octoprint/bin/octoprint-slicer.sh
+  path: /opt/OctoPrint/.octoprint/bin/slicer.sh
 feature: {}
 gcodeViewer: {}
 printerParameters:
