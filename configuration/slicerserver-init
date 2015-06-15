@@ -1,0 +1,67 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:	  slicerserver
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts the slicer web service
+# Description:       starts slicerserver using start-stop-daemon
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DESC=slicerserver
+NAME=slicerserver
+
+app=/var/www/slicer.underdogma.net
+socket=/tmp/slic3rserver.sock
+pidfile=/var/run/slicerserver.lock
+
+export PERL5LIB=$app/local/lib/perl5
+
+
+
+. /lib/lsb/init-functions
+
+start() {
+    start-stop-daemon --start --pidfile $pidfile --oknodo --quiet \
+        --startas /bin/bash -- -c "$app/script/slic3rserver_server.pl --fork -h 127.0.0.1 --background --pidfile $pidfile >> /var/log/slicerserver.log 2>&1"
+}
+
+stop() {
+    start-stop-daemon --stop --pidfile $pidfile --oknodo
+}
+
+case "$1" in
+	start)
+		log_daemon_msg "Starting $DESC" "$NAME"
+        start
+		log_end_msg $?
+		;;
+
+	stop)
+		log_daemon_msg "Stopping $DESC" "$NAME"
+        stop
+		log_end_msg $?
+		;;
+
+	restart)
+		log_daemon_msg "Restarting $DESC" "$NAME"
+		stop
+		sleep 1
+		start
+		log_end_msg $?
+		;;
+
+	status)
+		status_of_proc -p $pidfile "" $NAME
+		;;
+
+	*)
+		echo "Usage: $NAME {start|stop|restart}" >&2
+		exit 1
+		;;
+esac
+
+exit 0
