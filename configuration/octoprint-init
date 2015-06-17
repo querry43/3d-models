@@ -1,0 +1,50 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          octoprint
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts the octoprint 3d printer server
+# Description:       starts octoprint using start-stop-daemon
+### END INIT INFO
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/opt/OctoPrint/bin/octoprint
+NAME=octoprint
+DESC=octoprint
+USER=octoprint
+
+test -x $DAEMON || exit 0
+
+set -e
+
+. /lib/lsb/init-functions
+
+case "$1" in
+	start)
+		echo -n "Starting $DESC: "
+		sudo -u $USER $DAEMON --daemon start
+		echo "$NAME."
+		;;
+
+	stop)
+		echo -n "Stopping $DESC: "
+		sudo -u $USER $DAEMON --daemon stop
+		echo "$NAME."
+		;;
+
+	restart)
+		echo -n "Restarting $DESC: "
+		sudo -u $USER $DAEMON --daemon stop
+		sudo -u $USER $DAEMON --daemon start
+		echo "$NAME."
+		;;
+	*)
+		echo "Usage: $NAME {start|stop|restart}" >&2
+		exit 1
+		;;
+esac
+
+exit 0

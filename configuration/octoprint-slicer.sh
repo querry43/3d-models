@@ -1,8 +1,7 @@
 #!/bin/bash
 
 echo ----
-echo /opt/Slic3r/bin/slic3r -load $2 -output $6 $4
+echo curl http://slicer.underdogma.net/slice --form "stl_file=@$4" --form "config_file=default" --create-dirs -o $6
 echo ----
 
-
-/opt/Slic3r/bin/slic3r -load $2 -output $6 $4
+curl http://slicer.underdogma.net/slice --form "stl_file=@$4" --form "config_file=default" --create-dirs -o $6

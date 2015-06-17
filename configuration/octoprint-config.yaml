@@ -1,12 +1,12 @@
 accessControl:
-  salt: mOY2vrOMolEZJ7lH2hxpE4qsXw8W02kv
+  salt: u0L7TKJPlD5h1mMumsDVxrdvSlT85U4S
 api:
-  key: CBB923E212D24AE9B494EDC2E3A5361C
+  key: D05E9307A8034C3191ED93D3EBBA72DB
 appearance: {}
 cura:
   config: /home/matt/work/models/slic3r.ini
   enabled: true
-  path: /home/matt/.octoprint/bin/octoprint-slicer.sh
+  path: /opt/OctoPrint/.octoprint/bin/slicer.sh
 feature: {}
 gcodeViewer: {}
 printerParameters:
@@ -20,6 +20,17 @@ serial:
 server:
   firstRun: false
   secretKey: DKq3mrjRiOouS06LEpwgcLLZXgWaC0W9
+  secretKey: Nq3WwCB6AVu5KtkT3rQVdrixhIU6o6xu
 system: {}
 temperature: {}
 webcam: {}
+controls:
+  - name: PSU
+    type: section
+    children:
+      - name: Power On
+        type: command
+        command: M80
+      - name: Power Off
+        type: command
+        command: M81
