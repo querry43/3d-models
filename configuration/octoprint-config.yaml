@@ -34,3 +34,10 @@ controls:
       - name: Power Off
         type: command
         command: M81
+events:
+  enabled: True
+  subscriptions:
+  - event: PrintStarted
+    command:
+    - M80
+    type: gcode
