@@ -41,8 +41,6 @@ events:
     command:
     - M80
     type: gcode
-  enabled: True
-  subscriptions:
   - event: PrintStopped
     command:
     - M81
