@@ -41,3 +41,7 @@ events:
     command:
     - M80
     type: gcode
+  - event: PrintStopped
+    command:
+    - M81
+    type: gcode
