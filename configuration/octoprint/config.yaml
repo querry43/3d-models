@@ -13,7 +13,7 @@ printerParameters:
   movementSpeed:
     z: 100
 serial:
-  autoconnect: true
+  autoconnect: false
   baudrate: 250000
   port: /dev/ttyACM0
   timeout: {}
@@ -38,10 +38,19 @@ events:
   enabled: True
   subscriptions:
   - event: PrintStarted
+    type: gcode
     command:
     - M80
+  - event: PrintDone
     type: gcode
-  - event: PrintStopped
     command:
     - M81
+  - event: PrintCancelled
     type: gcode
+    command:
+    - G28 X
+  - event: PowerOff
+    type: gcode
+    command:
+    - M104 S0
+    - M140 S0
