@@ -49,8 +49,3 @@ events:
     type: gcode
     command:
     - G28 X
-  - event: PowerOff
-    type: gcode
-    command:
-    - M104 S0
-    - M140 S0
