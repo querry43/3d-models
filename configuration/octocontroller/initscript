@@ -1,35 +1,29 @@
 #!/bin/sh
 
 ### BEGIN INIT INFO
-# Provides:	  slicerserver
+# Provides:	  octocontroller
 # Required-Start:    $local_fs $remote_fs
 # Required-Stop:     $local_fs $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: starts the slicer web service
-# Description:       starts slicerserver using start-stop-daemon
+# Short-Description: starts the octocontroller service
+# Description:       starts octocontroller using start-stop-daemon
 ### END INIT INFO
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-DESC=slicerserver
-NAME=slicerserver
+DESC=octocontroller
+NAME=octocontroller
 
-app=/var/www/slicer.underdogma.net
-socket=/var/run/slicerserver.socket
-pidfile=/var/run/slicerserver.lock
-logfile=/var/log/slicerserver.log
-
-export PERL5LIB=$app/local/lib/perl5:$app/lib
-starman=$app/local/bin/starman
-psgi=$app/slic3rserver.psgi
-
+octocontroller=/home/matt/work/3d-printer/octocontroller/controller.py
+pidfile=/var/run/octocontroller.lock
+logfile=/var/log/octocontroller.log
 
 
 . /lib/lsb/init-functions
 
 start() {
     start-stop-daemon --start --pidfile "$pidfile" --oknodo --quiet \
-        --startas "$starman" -- --user www-data --group www-data --listen "$socket" --preload-app --pid "$pidfile" --access-log "$logfile" --error-log "$logfile" --daemonize "$psgi"
+        --startas "$octocontroller" -- --background --pidfile "$pidfile" --log "$logfile"
 }
 
 stop() {
