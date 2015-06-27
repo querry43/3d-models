@@ -2,50 +2,50 @@ accessControl:
   salt: u0L7TKJPlD5h1mMumsDVxrdvSlT85U4S
 api:
   key: D05E9307A8034C3191ED93D3EBBA72DB
-appearance: {}
-cura:
-  config: /home/matt/work/models/slic3r.ini
+controls:
+- children:
+  - command: M80
+    name: Power On
+    type: command
+  - command: M81
+    name: Power Off
+    type: command
+  name: PSU
+  type: section
+events:
   enabled: true
-  path: /opt/OctoPrint/.octoprint/bin/slicer.sh
-feature: {}
-gcodeViewer: {}
-printerParameters:
-  movementSpeed:
-    z: 100
+  subscriptions:
+  - command:
+    - M80
+    event: PrintStarted
+    type: gcode
+  - command:
+    - M81
+    - M117 Print Done %(now)s
+    event: PrintDone
+    type: gcode
+  - command:
+    - G28 X
+    event: PrintCancelled
+    type: gcode
+plugins:
+  discovery:
+    upnpUuid: 0cb62ad0-b447-4fba-8a8e-5ade16c9536d
+  softwareupdate:
+    _config_version: 2
+printerParameters: {}
+printerProfiles:
+  defaultProfile:
+    axes:
+      e: {}
+      x: {}
+      y: {}
+      z:
+        speed: 100
 serial:
-  autoconnect: false
   baudrate: 250000
   port: /dev/ttyACM0
   timeout: {}
 server:
   firstRun: false
-  secretKey: DKq3mrjRiOouS06LEpwgcLLZXgWaC0W9
   secretKey: Nq3WwCB6AVu5KtkT3rQVdrixhIU6o6xu
-system: {}
-temperature: {}
-webcam: {}
-controls:
-  - name: PSU
-    type: section
-    children:
-      - name: Power On
-        type: command
-        command: M80
-      - name: Power Off
-        type: command
-        command: M81
-events:
-  enabled: True
-  subscriptions:
-  - event: PrintStarted
-    type: gcode
-    command:
-    - M80
-  - event: PrintDone
-    type: gcode
-    command:
-    - M81
-  - event: PrintCancelled
-    type: gcode
-    command:
-    - G28 X
