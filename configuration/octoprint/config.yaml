@@ -3,15 +3,36 @@ accessControl:
 api:
   key: D05E9307A8034C3191ED93D3EBBA72DB
 controls:
-- children:
+- name: Actions
+  type: section
+  children:
   - command: M80
     name: Power On
     type: command
   - command: M81
     name: Power Off
     type: command
-  name: PSU
+- name: Testing
   type: section
+  children:
+  - command: M119
+    name: Endstops
+    type: command
+  - command: M119
+    name: X
+    type: feedback_command
+    regex: "x_min: (.*)"
+    template: "{0}"
+  - command: M119
+    name: Y
+    type: feedback_command
+    regex: "y_min: (.*)"
+    template: "{0}"
+  - command: M119
+    name: Z
+    type: feedback_command
+    regex: "z_min: (.*)"
+    template: "{0}"
 events:
   enabled: true
   subscriptions:
