@@ -33,13 +33,13 @@ module proto_board() {
 		translate([4.25,4.25,-0.5])
 		cylinder(h=thickness+1, d=3.5);
 
-		translate([width-4.25,4.25,-0.5])
+		translate([width-4.25+0.5,4.25,-0.5])
 		cylinder(h=thickness+1, d=3.5);
 
 		translate([4.25,height-4.25,-0.5])
 		cylinder(h=thickness+1, d=3.5);
 
-		translate([width-4.25,height-4.25,-0.5])
+		translate([width-4.25+0.5,height-4.25,-0.5])
 		cylinder(h=thickness+1, d=3.5);
 	}
 }
