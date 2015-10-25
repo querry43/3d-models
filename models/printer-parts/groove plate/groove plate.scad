@@ -1,112 +1,130 @@
-length=70;
-width=30;
-height=6;
+sensor_dia = 18;
 
-slot_width=4.2;
-slot_length=10.1;
-
-neck_dia=12.5;
-sensor_dia=19;
-
-$fn=30;
 
 groove_plate();
-sensor_holder();
 
-translate([-length/2,width+10])
-sensor_holder();
+translate([30+25, 30])
+sensor_plate();
 
-module sensor_holder() {
-	margin=4;
-	width=width+(margin*2);
+translate([10, 35])
+sensor_plate();
 
-	translate([0,-margin])
-	difference() {
-		base();
-		sensor_hole();
-		screw_holes();
-	}
+%translate([50+25, 50, -55])
+sensor();
 
-	module base() {
-		hull() {
-			translate([length,2])
-			cylinder(h=height, d=4);
-			translate([length,width-2])
-			cylinder(h=height, d=4);
 
-			translate([100+4,2])
-			cylinder(h=height, d=4);
-			translate([100+4,width-2])
-			cylinder(h=height, d=4);
-		}
-	}
+module sensor() {
+    cylinder(d = sensor_dia, h = 70);
+    translate([0, 0, 50])
+    cylinder(d = 32, h = 5);
+}
 
-	module sensor_hole() {
-		$fn=50;
-		translate([85+4,width/2,-0.5])
-		union() {
-			cylinder(h=height+1, d=sensor_dia);
-			%cylinder(h=height+1, d=30);
-		}
-	}
+module sensor_plate() {
+    length = 40;
+    width = 40;
+    height = 8;
 
-	module screw_holes() {
-		translate([length+2+4,margin,-0.5])
-		cylinder(h=height+1,d=4);
-		translate([length+28+4,margin,-0.5])
-		cylinder(h=height+1,d=4);
+    difference() {
+        plate();
+        sensor_hole();
+        screw_holes();
+    }
 
-		translate([length+2+4,width-margin,-0.5])
-		cylinder(h=height+1,d=4);
-		translate([length+28+4,width-margin,-0.5])
-		cylinder(h=height+1,d=4);
-	}
+    module plate() {
+        radius = 5;
+
+        $fn = 8;
+
+        hull() {
+            translate([radius/2, radius/2])
+            cylinder(d = radius, h = height);
+            translate([length - radius/2, radius/2])
+            cylinder(d = radius, h = height);
+            translate([length - radius/2, width - radius/2])
+            cylinder(d = radius, h = height);
+            translate([radius/2, width - radius/2])
+            cylinder(d = radius, h = height);
+        }
+    }
+
+    module sensor_hole() {
+        margin = 1;
+        translate([width/2, length/2, -0.5])
+        cylinder(d = sensor_dia + margin, h = height + 1);
+    }
+
+    module screw_holes() {
+        margin = 3;
+        dia = 4;
+
+        $fn = 8;
+
+        translate([margin + dia/2, margin + dia/2])
+        screw_hole();
+
+        translate([length - (margin + dia/2), margin + dia/2])
+        screw_hole();
+
+        translate([length - (margin + dia/2), width - (margin + dia/2)])
+        screw_hole();
+
+        translate([margin + dia/2, width - (margin + dia/2)])
+        screw_hole();
+
+        module screw_hole() {
+            translate([0, 0, -0.5])
+            cylinder(h = height + 1, d = dia);
+        }
+    }
 }
 
 module groove_plate() {
-	difference() {
-		base();
-		translate([10,width/2])
-		slot();
-		translate([length-10,width/2])
-		slot();
-		translate([length/2,width/2])
-		groove();
-	}
+    length = 70;
+    width = 30;
+    height = 6;
 
-	module base() {
-		hull() {
-			translate([2,2])
-			cylinder(h=height, d=4);
-		
-			translate([length-2,2])
-			cylinder(h=height, d=4);
-		
-			translate([2,width-2])
-			cylinder(h=height, d=4);
-		
-			translate([length-2,width-2])
-			cylinder(h=height, d=4);
-		}
-	}
+    difference() {
+        plate();
+        slots();
+        translate([length/2, width/2])
+        groove();
+    }
 
-	module slot() {
-		translate([slot_width/2-slot_length/2,0])
-		hull() {
-			translate([0,0,-0.5])
-			cylinder(h=height+1, d=slot_width);
+    module plate() {
+        cube([length, width, height]);
+    }
 
-			translate([slot_length-slot_width,0,-0.5])
-			cylinder(h=height+1, d=slot_width);
-		}
-	}
+    module slots() {
+        slot_length = 10.1;
 
-	module groove() {
-		translate([0,1,-0.5])
-		hull() {
-			cylinder(h=height+1, d=neck_dia);
-			translate([-neck_dia/2,-20])
-			cube([neck_dia,1,height+1]);
-		}
-	}
+        translate([10, width/2])
+        slot();
+
+        translate([length - 10 - slot_length, width/2])
+        slot();
+
+        module slot() {
+            slot_width = 4.2;
+
+            translate([0, 0, -0.5])
+            hull() {
+                translate([slot_width/2, 0])
+                cylinder(h = height+1, d = slot_width);
+
+                translate([slot_length-slot_width/2, 0])
+                cylinder(h = height+1, d = slot_width);
+            }
+        }
+    }
+
+    module groove() {
+        hotend_dia = 12.5;
+
+        translate([0, 0, -0.5])
+        hull() {
+            cylinder(h = height+1, d = hotend_dia);
+            translate([-hotend_dia/2, -20])
+            cube([hotend_dia, 1, height+1]);
+        }
+    }
 }
