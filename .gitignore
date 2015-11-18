@@ -1,4 +1,5 @@
 *.swp
 *.gcode
 *.gco
-gcode
+gcode/
+tmp/
