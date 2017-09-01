@@ -1,14 +1,80 @@
-platform();
-usb_cable_block();
+usb_cable_mounting_block();
+retaining_clip();
 
+module retaining_clip() {
+    translate([0, -0.2, 10.8])
+    union() {
+        cube([3.5, 28.89+5+5+0.4, 1]);
 
-module usb_cable_block() {
-    difference() {
-        translate([0, 0, 4.96])
-        cube([4.64+7.68, 28.89+5+5, 7.74]);
+        translate([0, 0, 1.5])
+        cube([3.5, 28.89+5+5+0.4, 1]);
+    }
+
+    translate([0, -2.2, 6.1])
+    union() {
+        cube([3.5, 2, 4.7+2.5]);
+        translate([0, 28.89+5+5+0.4+2, 0])
+        cube([3.5, 2, 4.7+2.5]);
+    }
+    
+    union() {
+        $fn = 20;
         
-        translate([0, 2.64/2, 4.96])
+        
+        difference() {
+            translate([0, -1.5, 8])
+            rotate([0, 90])
+            cylinder(h=3.5, d=4.55);
+            
+            translate([0, -10.3, 0])
+            cube([10, 10, 15]);
+        }
+
+        difference() {
+            translate([0, 28.89+5+5+0.4+1, 8])
+            rotate([0, 90])
+            cylinder(h=3.5, d=4.55);
+            
+            translate([0, 28.89+5+5+0.2, 0])
+            cube([10, 10, 15]);
+        }
+    }
+}
+
+module usb_cable_mounting_block() {
+    difference() {
+        union() {
+            platform();
+            usb_cable_block();
+        }
+
+        translate([0, 2.64/2, 2.96])
         usb_plugs();
+        
+        translate([19, 3, 2.96])
+        cube([10, 10, 10]);
+
+        translate([16, 27, 2.96])
+        cube([12, 10, 10]);
+    }
+
+    module usb_cable_block() {
+        difference() {
+            translate([0, 0, 2.96])
+            cube([4.64+7.68, 28.89+5+5, 7.74]);
+            
+            union() {
+                $fn = 20;
+                
+                translate([0, -1.5, 8])
+                rotate([0, 90])
+                cylinder(h=4, d=5);
+                
+                translate([0, 28.89+5+5+1.5, 8])
+                rotate([0, 90])
+                cylinder(h=4, d=5);
+            }
+        }
     }
 
     module usb_plugs() {
@@ -19,8 +85,14 @@ module usb_cable_block() {
         module usb_plug() {
             translate([0, 2.32, 2])
             cube([4.65, 13.25, 5.75]);
-            translate([4.65, 0])
-            cube([7.68, 17.33, 10]);
+            hull() {
+                translate([4.65, 0])
+                cube([10, 17.33, 10]);
+                translate([24.34, (17.33-10)/2, 0])
+                cube([0.1, 10, 10]);
+            }
+            translate([24.34, (17.33-10)/2])
+            cube([9, 10, 10]);
         }
     }
 }
@@ -32,6 +104,7 @@ module platform() {
         translate([0, 5]) {
             translate([22.58, 1])
             cylinder(h=5, d=3);
+
             hull() {
                 cube([14.80, 2, 2.64]);
                 translate([0, -2])
@@ -42,6 +115,7 @@ module platform() {
         translate([0, 5+28.89]) {
             translate([22.58, 1])
             cylinder(h=5, d=3);
+
             hull() {
                 cube([14.80, 2, 2.64]);
                 cube([5, 4, 2.64]);
