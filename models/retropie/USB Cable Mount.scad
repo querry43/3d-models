@@ -1,42 +1,49 @@
 usb_cable_mounting_block();
 retaining_clip();
 
-module retaining_clip() {
-    translate([0, -0.2, 10.8])
+module retaining_clip(clip_depth = 3.5) {
+    translate([0, -0.5, 11.3])
     union() {
-        cube([3.5, 28.89+5+5+0.4, 1]);
+        spring_height = 1.5;
+        cube([clip_depth, 28.89+5+5+1, spring_height]);
+        
+        translate([0, 5, -0.5])
+        cube([clip_depth, 11.5, 1]);
 
-        translate([0, 0, 1.5])
-        cube([3.5, 28.89+5+5+0.4, 1]);
+        translate([0, 24, -0.5])
+        cube([clip_depth, 11.5, 1]);
+
+        translate([0, 0, 3])
+        cube([clip_depth, 28.89+5+5+1, spring_height]);
     }
 
-    translate([0, -2.2, 6.1])
+    translate([0, -2.5, 6.1])
     union() {
-        cube([3.5, 2, 4.7+2.5]);
-        translate([0, 28.89+5+5+0.4+2, 0])
-        cube([3.5, 2, 4.7+2.5]);
+        cube([clip_depth, 2, 4.7+5]);
+        translate([0, 28.89+5+5+1+2, 0])
+        cube([clip_depth, 2, 4.7+5]);
     }
     
     union() {
         $fn = 20;
-        
+        clip_radius = 4.55;
         
         difference() {
-            translate([0, -1.5, 8])
+            translate([0, -1.8, 8])
             rotate([0, 90])
-            cylinder(h=3.5, d=4.55);
+            cylinder(h=clip_depth, d=clip_radius);
             
-            translate([0, -10.3, 0])
-            cube([10, 10, 15]);
+            translate([0, -6.5, 0])
+            cube([4, 4, 15]);
         }
 
         difference() {
-            translate([0, 28.89+5+5+0.4+1, 8])
+            translate([0, 28.89+5+5+0.4+1.3, 8])
             rotate([0, 90])
-            cylinder(h=3.5, d=4.55);
+            cylinder(h=clip_depth, d=clip_radius);
             
-            translate([0, 28.89+5+5+0.2, 0])
-            cube([10, 10, 15]);
+            translate([0, 28.89+5+5+2.5, 0])
+            cube([4, 4, 15]);
         }
     }
 }
