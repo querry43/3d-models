@@ -3,6 +3,19 @@ servo();
 translate([0, 60])
 micro_servo();
 
+translate([-40, 0])
+raspberry_pi_cam();
+
+module raspberry_pi_cam() {
+    cube([25, 24, 4]);
+    translate([25/2 - 8/2, 5.7, 4])
+    cube([8, 8, 5.3]);
+    translate([25/2 - 8/2, 5.7+8, 4])
+    cube([8, 9, 1.3]);
+    translate([25/2 - 21/2, 0, -3])
+    cube([21, 6, 3]);
+}
+
 module micro_servo() {
     body();
     output_shaft();
