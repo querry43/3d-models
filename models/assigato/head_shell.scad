@@ -1,10 +1,13 @@
 use <../openscad_libraries/robotics.scad>
 use <head_pan_tilt.scad>
 
-difference() {
+%difference() {
+    shell();
+    
+    scale([0.9, 0.9, 0.9])
     shell();
 
-    translate([-25/2, -29, -9])
+    translate([-25/2, -28, -9])
     rotate([90, 0])
     raspberry_pi_cam();
     
@@ -24,16 +27,20 @@ difference() {
 
 
 
-translate([-17, -10, -10])
-head_pan_tilt_assembly(upright = true);
+translate([-17, -11, -10])
+head_pan_tilt_assembly(pan_angle = 0, tilt_angle = 90);
+
+translate([-25/2, -27, -9])
+rotate([90, 0])
+raspberry_pi_cam();
 
 
 
 
 module shell() {
     hull() {
-        for(x = [-115:1:115]) {
-            cross_section(x, $fn = 25);
+        for(x = [-115:5:115]) {
+            cross_section(x);
         }
     }
 }

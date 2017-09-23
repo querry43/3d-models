@@ -2,17 +2,16 @@ use <../openscad_libraries/robotics.scad>
 
 head_pan_tilt_assembly();
 
-module head_pan_tilt_assembly(upright = false) {
+module head_pan_tilt_assembly(tilt_angle = $t * 180, pan_angle = ($t * 180) - 90) {
+    translate([16, 11])
+    rotate([0, 0, pan_angle])
+    translate([-16, -11])
     platform();
     
-    if (upright) {
-        translate([0, 11, 10])
-        rotate([90, 0])
-        translate([0, -11, -10])
-        mounting_rail();
-    } else {
-        mounting_rail();
-    }
+    translate([18, 11, 10])
+    rotate([tilt_angle, 0, pan_angle])
+    translate([-18, -11, -10])
+    mounting_rail();
 
     %translate([6.5, 1, -9])
     rotate([0, 90])
@@ -75,7 +74,7 @@ module platform() {
             translate([2, 2-5])
             cylinder(h = 3, d = 4);
             
-            #translate([38-2, 2-5])
+            translate([38-2, 2-5])
             cylinder(h = 3, d = 4);
 
             translate([2, 34-2])
