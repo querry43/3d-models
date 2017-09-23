@@ -1,11 +1,23 @@
 use <../openscad_libraries/robotics.scad>
 
-platform();
-mounting_rail();
+head_pan_tilt_assembly();
 
-%translate([6.5, 1, -9])
-rotate([0, 90])
-servo();
+module head_pan_tilt_assembly(upright = false) {
+    platform();
+    
+    if (upright) {
+        translate([0, 11, 10])
+        rotate([90, 0])
+        translate([0, -11, -10])
+        mounting_rail();
+    } else {
+        mounting_rail();
+    }
+
+    %translate([6.5, 1, -9])
+    rotate([0, 90])
+    servo();
+}
 
 module mounting_rail() {
     difference() {
