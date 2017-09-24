@@ -6,6 +6,27 @@ micro_servo();
 translate([-40, 0])
 raspberry_pi_cam();
 
+translate([-25, 45])
+led_5mm();
+
+module led_5mm() {
+    $fn = 15;
+
+    hull() {
+        translate([0, 0, 6.5])
+        sphere(d = 5);
+        cylinder(h = 6.5, d = 5);
+    }
+
+    cylinder(h = 1, d = 6);
+
+    translate([1.25, 0, -10])
+    cylinder(h = 10, d = 0.5);
+
+    translate([-1.25, 0, -10])
+    cylinder(h = 10, d = 0.5);
+}
+
 module raspberry_pi_cam() {
     cube([25, 24, 4]);
     translate([25/2 - 8/2, 5.7, 4])
