@@ -2,7 +2,7 @@ use <../openscad_libraries/robotics.scad>
 
 head_pan_tilt_assembly(tilt_angle = $t * 180, pan_angle = ($t * 180) - 90, neck_height = 10);
 
-module head_pan_tilt_assembly(tilt_angle = 0, pan_angle = 0, neck_height = 0) {
+module head_pan_tilt_assembly(tilt_angle = 0, pan_angle = 0, neck_height = 0, rail_height = 40) {
     translate([16, 11])
     rotate([0, 0, pan_angle])
     translate([-16, -11])
@@ -11,16 +11,17 @@ module head_pan_tilt_assembly(tilt_angle = 0, pan_angle = 0, neck_height = 0) {
     translate([16, 11, 10])
     rotate([tilt_angle, 0, pan_angle])
     translate([-16, -11, -10])
-    mounting_rail();
+    mounting_rail(rail_height = rail_height);
 
     %translate([6.5, 1, -9 - neck_height])
     rotate([0, 90])
     servo();
 }
 
-module mounting_rail() {
+module mounting_rail(rail_height) {
     difference() {
         arm();
+
         translate([-20, 0])
         axis(diameter = 7);
     }
@@ -33,8 +34,8 @@ module mounting_rail() {
         axis();
     }
 
-    translate([-11, 40, 4.5])
-    cube([54.5, 10, 10]);
+    translate([-11, rail_height, 4.5])
+    cube([54.5, 5, 10]);
 
     module arm() {
         hull() {
@@ -42,7 +43,7 @@ module mounting_rail() {
             rotate([0, -90])
             cylinder(h = 5, d = 10);
 
-            translate([-11, 40, 4.5])
+            translate([-11, rail_height, 4.5])
             cube([5, 5, 10]);
         }
     }
