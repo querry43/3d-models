@@ -3,3 +3,4 @@
 *.gco
 gcode/
 tmp/
+.DS_Store
