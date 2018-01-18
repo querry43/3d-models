@@ -2,7 +2,7 @@ pi_mount();
 
 module pi_mount() {
     difference() {
-        cube([85, 60, 12]);
+        cube([82, 60, 12]);
 
         translate([6, 8.5, 0]) union() {
             translate([0, 0, 8.5]) gc_hole(h=10);
@@ -12,7 +12,7 @@ module pi_mount() {
         }
     }
 
-    for (x = [18.5, 18+5+58]) {
+    for (x = [18.5, 18.5+58]) {
         for (y = [6, 6+49]) {
             translate([x, y, 12]) pi_hole(h=14.5);
         }
@@ -23,7 +23,7 @@ module pi_mount() {
     module gc_hole(h=1) {
         $fn = 20;
         cylinder(h=h, d=3);
-        translate([0, 0, -h]) cylinder(h=h, d=6);
+        translate([0, 0, -h]) cylinder(h=h, d=7.5);
         translate([0, 0, 3]) cylinder(h=h, d=8);
     }
 
