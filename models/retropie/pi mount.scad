@@ -1,16 +1,21 @@
 pi_mount();
 
+
+
 module pi_mount() {
 
     difference() {
         union() {
-            cube([82, 60, 12]);
+            cube([82, 60, 11]);
 
             for (x = [18.5, 18.5+58]) {
                 for (y = [6, 6+49]) {
                     translate([x, y, 12]) pi_hole(h=14.5);
                 }
             }
+
+            translate([18.5+58, 6+49, 18])
+            pi_nub();
         }
 
         translate([6, 8.5, 0]) union() {
@@ -30,8 +35,16 @@ module pi_mount() {
         cube([100, 10, 30]);
         translate([82, -5, -5])
         cube([10, 70, 30]); 
-        translate([63.5, 2, 12])
-        cube([10, 10, 20]);
+        translate([63.4, 2, 11])
+        cube([10, 100, 20]);
+        translate([5.3, 0, 11])
+        cube([10, 20, 30]);
+        translate([3.5, 50, 11])
+        cube([10, 20, 30]);
+        translate([22, 50, 11])
+        cube([10, 20, 30]);
+        translate([-7, 23, 7])
+        cube([20, 40, 30]);
     }
 
     module gc_hole(h=1) {
@@ -71,5 +84,11 @@ module pi_mount() {
             translate([-1, -12, 0])
             cube([2, 10, 0.1]);
         }
+    }
+
+    module pi_nub(h=5) {
+        $fn = 10;
+        cylinder(h=8.5, d=4);
+        cylinder(h=10, d=2);
     }
 }
