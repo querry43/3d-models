@@ -10,11 +10,11 @@ module pi_mount() {
 
             for (x = [18.5, 18.5+58]) {
                 for (y = [6, 6+49]) {
-                    translate([x, y, 12]) pi_hole(h=14.5);
+                    translate([x, y, 11]) pi_hole(h=14.5);
                 }
             }
 
-            translate([18.5+58, 6+49, 18])
+            translate([18.5+58, 6+49, 17])
             pi_nub();
         }
 
