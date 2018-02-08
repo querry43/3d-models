@@ -35,14 +35,14 @@ module pi_mount() {
         cube([10, 70, 30]);
         translate([49.9, 2, 11])
         cube([10, 100, 20]);
-        translate([-8.2, 0, 11])
+        translate([-8.2, 0, 4])
         cube([10, 20, 30]);
-        translate([9, 0, 11])
+        translate([8.5, 0, 11])
         cube([10, 20, 30]);
         translate([-10, 50, 11])
         cube([10, 20, 30]);
-        translate([8.5, 50, 11])
-        cube([10, 20, 30]);
+        translate([8.5, 60-8, 0])
+        cube([51.4, 8, 30]);
     }
 
     module gc_hole(h=1) {
