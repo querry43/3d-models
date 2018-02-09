@@ -56,7 +56,7 @@ module pi_mount() {
         $fn = 20;
         difference(){
             cylinder(h=h, d=6.3);
-            translate([0, 0, h-3.9]) cylinder(h=4, d=3);
+            translate([0, 0, h-7.9]) cylinder(h=8, d=2.5);
         }
         hull() {
             translate([2, -1, 0])
