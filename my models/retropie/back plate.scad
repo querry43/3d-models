@@ -1,8 +1,8 @@
 difference() {
     back_plate();
-    translate([8.7, -0.1, 45]) power_jack(d=10);
+    translate([8.7, -0.1, 45.5]) power_jack(d=10);
     translate([-(99.8-125)/2, 1.5, 5.5]) indent(d=10);
-    translate([24, 10, 5.6+45-16.5]) rotate([-180, 0, 0]) pi_plugs(d=11);
+    translate([33.8, 10, 5.6+45-16.5]) rotate([-180, 0, 0]) pi_plugs(d=11);
 }
 
 module indent(d=1) {
@@ -21,11 +21,11 @@ module pi_plugs(d=1) {
     $fn = 20;
     
     hull() {
-        translate([0, 0, 5.6-4.2]) cube([15, d, 4.2]);
+        translate([-0.5, 0, 5.6-4.2]) cube([16, d, 4.2]);
         translate([-(11.3-15)/2, 0, 0]) cube([11.3, d, 0.1]);
     }
 
-    translate([32-6/2, 0, 6/2]) rotate([-90, 0, 0]) cylinder(d=6, h=d);
+    translate([32-6/2, 0, 6/2]) rotate([-90, 0, 0]) cylinder(d=6.5, h=d);
 }
 
 module power_jack(d=1) {

@@ -43,6 +43,8 @@ module pi_mount() {
         cube([10, 20, 30]);
         translate([8.5, 60-8, 0])
         cube([51.4, 8, 30]);
+        translate([0, -2.2, 0])
+        cube([100, 5, 40]);
     }
 
     module gc_hole(h=1) {
