@@ -1,8 +1,26 @@
 difference() {
     back_plate();
-    translate([9.7, -0.1, 45.5]) power_jack(d=10);
+    translate([7.7, -0.1, 44.3]) power_jack(d=10);
     translate([-(99.8-125)/2, 1.5, 5.5]) indent(d=10);
-    translate([34.8, 10, 5.6+45-16.5+2.5]) rotate([-180, 0, 0]) pi_plugs(d=11);
+    translate([33.7, 10, 37.6]) rotate([-180, 0, 0]) pi_plugs(d=11);
+}
+
+//#measure();
+
+module measure() {
+    // power jack
+    translate([0.75, 8, 45.5])
+    cube([7, 0.25, 0.25]);
+    translate([10, 6.5, 54.8])
+    cube([0.25, 0.25, 8]);
+    translate([0.75+7, 8, 49.5])
+    cube([14.5, 0.25, 0.25]);
+
+    // hdmi
+    translate([0, 2, 32])
+    cube([33.25, 0.25, 0.25]);
+    translate([40, 2, 2.4])
+    cube([0.25, 0.25, 29.25]);
 }
 
 module indent(d=1) {
